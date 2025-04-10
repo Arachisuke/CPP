@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:31:42 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/19 15:33:57 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/04/10 18:58:26 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ public:
     void search_contact();
 
 private:
-    const int max_contacts;
-    int current_nb;
-    int nb_contacts;
-    Contact array[8];
+    const int max_contacts; // 8
+    int current_nb; // index pour me situer dans l'annuaire
+    int nb_contacts; // numero du contact
+    Contact array[8]; // nombre de class contact.
 };
 
 #endif

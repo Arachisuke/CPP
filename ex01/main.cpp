@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:31:48 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/01/20 12:45:59 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/04/10 16:30:44 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int main(void)
         input = "";
         std::cout << "Enter your command > ";
         std::getline(std::cin, input);
-        // if (input.empty())
-        //     return (0);
+        if (std::cin.eof())
+            return (0);
         if (input.compare("ADD") == 0)
             PhoneBook.add_contact();
         if (input.compare("SEARCH") == 0)
