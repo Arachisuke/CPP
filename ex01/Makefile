@@ -1,6 +1,6 @@
 SRCS = *.cpp
 NAME = repertory
-CC = c++ -Wall -Werror -Wextra -std=c++98
+CC = c++ -Wall -Werror -Wextra -std=c++98 -g3
 OBJS = $(SRCS:.cpp =.o)
 
 all: $(NAME) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:14:11 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/10 19:18:17 by macos            ###   ########.fr       */
+/*   Updated: 2025/04/14 17:03:58 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void PhoneBook::add_contact()
 {
     std::string str;
 
-    if (this->current_nb == this->max_contacts - 1) // si t'es le dernier et que tu veux re add alors on supprime le contact 0
+    if (this->current_nb == this->max_contacts)
         this->current_nb = 0;
         
     system("clear");
@@ -35,9 +35,8 @@ void PhoneBook::add_contact()
     }
     if (std::cin.eof())
         exit(0);
+    this->array[this->current_nb].setName(str);
     str = "";
-     
-    this->array[this->current_nb].setName(str); // bien penser que setName ca set que ce name la de ce phonebook car chaque setname a un name different il a le name du phonebook.
     system("clear");
     while(str.length() == 0)
     {
@@ -46,9 +45,9 @@ void PhoneBook::add_contact()
     }
     if (std::cin.eof())
         exit(0);
-    str = ""; 
-            
+        
     this->array[this->current_nb].setLast(str);
+    str = ""; 
     system("clear");
     while(str.length() == 0)
     {
@@ -57,9 +56,9 @@ void PhoneBook::add_contact()
     }
     if (std::cin.eof())
         exit(0);
-    str = ""; 
-            
+        
     this->array[this->current_nb].setNick(str);
+    str = ""; 
     system("clear");
     while(str.length() == 0)
     {
@@ -68,9 +67,9 @@ void PhoneBook::add_contact()
     }
     if (std::cin.eof())
         exit(0);
-    str = ""; 
-            
+        
     this->array[this->current_nb].setPhone(str);
+    str = ""; 
     system("clear");
     while(str.length() == 0)
     {
@@ -80,7 +79,6 @@ void PhoneBook::add_contact()
     }
     if (std::cin.eof())
         exit(0);
-        
     this->array[this->current_nb].setSecret(str);
     system("clear");
     this->current_nb++;
@@ -88,50 +86,64 @@ void PhoneBook::add_contact()
         this->nb_contacts++;
 }
 
+
+std::string ft_tronc(std::string str)
+{
+    if (str.length() > 10)
+    {
+        return str.substr(0, 9) + ".";  
+    }
+    if (str.length() < 10)
+    {
+        if (str.length() < 10)
+		str = std::string(10 - str.length(), ' ') + str;
+    }
+    return str;
+}
+
 void PhoneBook::search_contact()
 {
     std::string str;
+    std::string last;
+    std::string first;
+    std::string nickname;
     std::string input;
+    
     int index;
     
     str = this->array[0].getName();
     if (str.empty())
-        std::cout << "it's empty";
-    else
     {
-        std::cout << "Type a contact's index to obtain personal informations 0 to 7";
-        std::getline(std::cin, input);
-        index = std::stoi(input); // convertit string → int
-
-    while(input.length() != 1 && index < 0 && index > 7)
-    {
-        std::cout << "Type a contact's index between 0 and 7, inclusive. ";
-        std::getline(std::cin, input);
-        index = std::stoi(input); // convertit string → int
+        std::cout << "it's empty" << std::endl ;
+        return ;
     }
-    
-    std::cout <<  "Index| Firstname|  Lastname|  Nickname";
-    std::cout << "";
-        
-        // sortir la array depuis l'index.
-        // ensuite faire une manipulation de string en balle et afficher.
-        // gerer quelque cas, je pense ya des cas a gerer quand meme a y reflechir et lire les autres git.
-        this->array[index]
+    index = -1;
+    while(input.length() != 1 && (index < 0 || index > 7))
+    {
+        std::cout << "Type a contact's index between 0 and 7, inclusive. " << std::endl;
+        std::getline(std::cin, input);
+        try
+        {
+            index = std::stoi(input); 
+        } catch (std::invalid_argument& e) {
+            std::cout << "❌ it's not a valid number !" << std::endl;
+        } catch (std::out_of_range& e) {
+            std::cout << "❌ Overflow !" << std::endl;
+        }
+    }
+
+    last = this->array[index].getLast();
+    first = this->array[index].getName();
+    nickname = this->array[index].getNick();
+
+    if (last.empty())
+    {
+        std::cout << "There is no contact at that index." << std::endl;
+        return ;
+    }
+    last =  ft_tronc(last);
+    first  = ft_tronc(first);
+    nickname = ft_tronc(nickname);
+    std::cout << "     Index| Firstname|  Lastname|  Nickname" << std::endl;
+    std::cout << "        " << index << "|" << first << "|" << last << "|" << nickname << std::endl;
 }
-
-// juste a ecrire les interieur de fonction et les utiliser et tester c'est bon!
-// afficher l'unicode. @@@
-// proteger les std::cin ? dun eventuel ctrl-D @@
-// proteger les getline a chaque fois ? @@@@
-// est ce que si jecris exit dans les types a commmand jexit ? NON
-
-
-
-
-// Les champs d’un contact enregistré ne peuvent être vides.
-// deux choix s'offre a moi je lui fais reecrire tant que la chaine est vide ou bien comme j'ai fais la je met non specifie.
-// la solution c'est faire un while tant que la taille de la chaine est a 0 je lance la boucle.
-
-// faire search je te laisse 2h, sinon tu lis t'as pas le temps.
-// search sans contact a gerer.
-// pour le search, un simple affichage avec un tableau, et pas forcer les caractere a 8, il est dit que ca doit faire un point sil est trop grand.

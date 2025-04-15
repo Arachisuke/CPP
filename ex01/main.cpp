@@ -6,7 +6,7 @@
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:31:48 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/10 16:30:44 by macos            ###   ########.fr       */
+/*   Updated: 2025/04/14 17:01:00 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,3 @@ int main(void)
     }
     return (0);
 }
-
-// est ce que je dois quitter si je met un /n ....
-//"Une fois la commande correctement exécutée"
-
-/*
-Index| Firstname|  Lastname|  Nickname
-    0|     weowe|       wef|          
-    1|    okokok|    okokok|    okokok
-    2|wefjwe'jw.|      wjef|weifjweif.
-
-Type a contact's index to obtain personal informations : */
