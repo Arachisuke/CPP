@@ -3,12 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:45:19 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/16 16:24:47 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:17:04 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
+
 
 #include <string>
 #include <iostream>
@@ -31,3 +35,5 @@ public:
 private:
     str type;
 };
+
+#endif

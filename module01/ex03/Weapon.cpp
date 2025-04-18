@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:50:31 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/16 16:24:26 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:31:43 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 Weapon::Weapon(str name)
 {
     this->type = name;
-    std::cout << "constructor called" << std:: endl;
+    std::cout << "constructor weapon" << std:: endl;
 }
 
 Weapon::~Weapon()
 {
-    std::cout << "desstructor called" << std:: endl;
+    std::cout << "destructor weapon" << std:: endl;
 }
 
 const str &Weapon::getType(void) const

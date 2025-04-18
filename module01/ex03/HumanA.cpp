@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 16:04:51 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/16 16:37:18 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/04/17 18:32:24 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-void HumanA::attack(str weapon)
+void HumanA::attack()
 {
-    std::cout << this->name <<  "attacks with their" << weapon << std::endl;
+    std::cout << this->name <<  " attacks with their " << this->weapon << std::endl;
 }
 
 HumanA::HumanA(str name, Weapon weapon)
 {
     this->name = name;
-    std::cout << name << "takes the weapon called" << weapon.getType() << std::endl;
+    this->weapon = weapon.getType(); // jai recupere une reference, du coup logiquement si je change weapon normalement lui aussi change a tester.
+    std::cout << this->name << " takes the weapon called " << this->weapon << std::endl;
 }
 
 HumanA::~HumanA()
 {
-    std::cout << "destructor called" << std:: endl;
+    std::cout << "destructor humanA" << std:: endl;
 }

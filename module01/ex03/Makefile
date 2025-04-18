@@ -1,5 +1,5 @@
-SRCS = main.cpp
-NAME = address
+SRCS = *.cpp
+NAME = Unnecessary_violence
 CC = c++ -Wall -Werror -Wextra -std=c++98 -g3
 OBJS = $(SRCS:.cpp =.o)
 

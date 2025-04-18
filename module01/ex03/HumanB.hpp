@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 16:03:11 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/16 16:41:38 by wzeraig          ###   ########.fr       */
+/*   Created: 2025/04/16 16:05:08 by wzeraig           #+#    #+#             */
+/*   Updated: 2025/04/17 18:16:17 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 #include "Weapon.hpp"
 
-class HumanA
+class HumanB
 {
 public:
-    HumanA(str name, Weapon type);
-    ~HumanA();
+    HumanB(str name);
+    ~HumanB();
     str name;
     str weapon;
 
     void attack();
+    void setWeapon(Weapon name);
 };
+
+#endif
+
