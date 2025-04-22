@@ -1,19 +1,22 @@
+NAME = hordezombie
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+
 SRCS = main.cpp	Zombie.cpp zombieHorde.cpp
-NAME = hordedezombie
-CC = c++ -Wall -Werror -Wextra -std=c++98 -g3
-OBJS = $(SRCS:.cpp =.o)
+OBJS = $(SRCS:.cpp=.o)
 
-all: $(NAME) $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
-$(NAME) : $(OBJS)
+all: $(NAME)
 
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(NAME)
-
+	rm -f $(OBJS)
 
 fclean: clean
+	rm -f $(NAME)
 
-
-re : fclean all
+re: fclean all
