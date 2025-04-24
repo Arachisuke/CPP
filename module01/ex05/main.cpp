@@ -5,22 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 12:41:03 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/24 13:58:21 by wzeraig          ###   ########.fr       */
+/*   Created: 2025/04/24 15:07:36 by wzeraig           #+#    #+#             */
+/*   Updated: 2025/04/24 15:19:11 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sed.hpp"
+#include "Harl.hpp"
 
-int main(int argc, char **argv)
+int main(void)
 {
-    if (argc != 4) 
-    {
-        std::cerr << "Error: [filename] [S1] [S2]" << std::endl;
-        return (1);
-    }
-    replace(argv);
-
-    return 0;
+    Harl harl;
+    harl.complain("DEBUG");
 }
-

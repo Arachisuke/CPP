@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Sed.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 12:41:03 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/24 13:58:21 by wzeraig          ###   ########.fr       */
+/*   Created: 2025/04/24 12:50:18 by wzeraig           #+#    #+#             */
+/*   Updated: 2025/04/24 12:55:00 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sed.hpp"
 
-int main(int argc, char **argv)
-{
-    if (argc != 4) 
-    {
-        std::cerr << "Error: [filename] [S1] [S2]" << std::endl;
-        return (1);
-    }
-    replace(argv);
+#ifndef HEADER_HPP
+#define HEADER_HPP
 
-    return 0;
-}
+#include <iostream>
+#include <string>
+#include <fstream>
 
+void    replace(char **argv);
+
+
+#endif

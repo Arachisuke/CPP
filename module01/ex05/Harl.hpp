@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/24 12:41:03 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/24 13:58:21 by wzeraig          ###   ########.fr       */
+/*   Created: 2025/04/24 14:02:52 by wzeraig           #+#    #+#             */
+/*   Updated: 2025/04/24 14:40:13 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Sed.hpp"
+#ifndef HEADER_HPP
+#define HEADER_HPP
 
-int main(int argc, char **argv)
+#include <iostream>
+#include <string>
+#include <fstream>
+
+class Harl
 {
-    if (argc != 4) 
-    {
-        std::cerr << "Error: [filename] [S1] [S2]" << std::endl;
-        return (1);
-    }
-    replace(argv);
+private:
+    void _debug(void);
+    void _info(void);
+    void _warning(void);
+    void _error(void);
 
-    return 0;
-}
+public:
+    Harl(void);
+    ~Harl(void);
+    void complain(std::string level);
+};
 
+#endif
