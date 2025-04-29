@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 11:38:41 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/16 14:01:26 by wzeraig          ###   ########.fr       */
+/*   Created: 2025/04/29 15:38:59 by wzeraig           #+#    #+#             */
+/*   Updated: 2025/04/29 15:39:01 by wzeraig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#pragma once
 
-#include <string>
 #include <iostream>
-#include <cctype>
-#include <unistd.h>
-#include <cstdlib>
+#include <string>
 #include <iomanip>
-#include <cstdio>
 
-typedef std::string str;
-
-class Zombie
+class Fixed
 {
-    private:
-        std::string _name;
+	private:
+		int					_valueFixed;
+		static int const	_nbBits;
 
 	public:
-		Zombie(void);
-		~Zombie(void);
-        void announce(void);
-        void setName(str name);
-      static int num;
+		Fixed();				//canonical default constructor
+		Fixed(Fixed const &src); //canonical	copy constructor
+		~Fixed();
+		Fixed	&operator=(Fixed const &rhs); //canonical = overload
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
-
-Zombie* zombieHorde( int N, str name );
-
-#endif
