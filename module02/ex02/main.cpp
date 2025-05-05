@@ -5,31 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 16:15:47 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/23 18:57:04 by macos            ###   ########.fr       */
+/*   Created: 2025/04/30 15:02:07 by macos             #+#    #+#             */
+/*   Updated: 2025/05/01 19:22:13 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "Fixed.hpp"
 
-int main()
-{
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanA bob("Bob", club);
-        bob.attack();
-        club.setType("some other type of club");
-        bob.attack();
-    }
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanB jim("Jim");
-        jim.setWeapon(club);
-        jim.attack();
-        club.setType("some other type of club");
-        jim.attack();
-    }
-    return 0;
-}
+int main( void ) {
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return 0;
+	}

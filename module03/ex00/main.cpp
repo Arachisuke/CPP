@@ -5,31 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 16:15:47 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/04/23 18:57:04 by macos            ###   ########.fr       */
+/*   Created: 2025/05/04 17:30:51 by macos             #+#    #+#             */
+/*   Updated: 2025/05/04 20:13:23 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
-#include "Weapon.hpp"
+#include "ClapTrap.hpp"
 
-int main()
+int	main(void)
 {
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanA bob("Bob", club);
-        bob.attack();
-        club.setType("some other type of club");
-        bob.attack();
-    }
-    {
-        Weapon club = Weapon("crude spiked club");
-        HumanB jim("Jim");
-        jim.setWeapon(club);
-        jim.attack();
-        club.setType("some other type of club");
-        jim.attack();
-    }
-    return 0;
+	ClapTrap ClapA("ClapA");
+	ClapTrap ClapB("ClapB");
+	ClapTrap ClapC("ClapC");
+	ClapTrap ClapD("ClapD");
+
+	ClapA.setAttack(10);
+	ClapA.attack("ClapC");
+	if (ClapA.getHp() > 0 && ClapA.getEp() > 0)
+		ClapC.takeDmg(10);
+	ClapC.beRepaired(10);
+	ClapD.setAttack(2);
+	for (int i = 0; i < 10; i++){
+		ClapD.attack("ClapB");
+		if (ClapD.getHp() > 0 && ClapD.getEp() > 0)
+			ClapB.takeDmg(2);
+		ClapB.beRepaired(1);
+	}
 }
