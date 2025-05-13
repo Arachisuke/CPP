@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:54:31 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/05/07 16:11:49 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:51:52 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ Cat::Cat() : _brain(new Brain())
     _type = "Cat";
 
     std::cout << "Cat: Default constructor called." << std::endl;
-    // rajouter un new brain ?
 }
 
 Cat::Cat(Cat const &other) : AAnimal(other), _brain(new Brain(*other._brain))

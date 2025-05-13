@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:55:31 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/05/07 16:12:42 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:51:43 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ Dog::Dog() : _brain(new Brain())
 {
     _type = "Dog";
     std::cout << "Dog: Default constructor called." << std::endl;
-    // rajouter un new brain ?
 }
 
 Dog::Dog(Dog const &other) : AAnimal(other), _brain(new Brain(*other._brain))

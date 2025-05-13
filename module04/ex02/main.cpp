@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wzeraig <wzeraig@student.42.fr>            +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:10:18 by wzeraig           #+#    #+#             */
-/*   Updated: 2025/05/07 16:12:33 by wzeraig          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:51:11 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 int main(void)
 {
     AAnimal *tab[20];
+
+   // AAnimal test; abstract.
 
     int x = 0;
     for (; x < 10; x++)
