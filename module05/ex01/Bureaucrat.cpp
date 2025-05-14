@@ -6,7 +6,7 @@
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:57:59 by macos             #+#    #+#             */
-/*   Updated: 2025/05/13 17:17:52 by macos            ###   ########.fr       */
+/*   Updated: 2025/05/14 16:31:27 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,15 @@ int Bureaucrat::getGrade()
     return this->grade;
 }
 
-void Bureaucrat::incrGrade()
-{
-    this->grade++;
-    if (grade > 150)
+void Bureaucrat::incrGrade(){
+    this->_grade++;
+    if (this->_grade < 1)
         throw Bureaucrat::GradeTooHighException();
- }
+}
 
-void Bureaucrat::decrGrade()
-{
-    this->grade--;
-    if (grade < 1)
+void Bureaucrat::decrGrade(){
+    this->_grade--;
+    if (this->_grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
 

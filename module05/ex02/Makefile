@@ -2,7 +2,7 @@ NAME = a.out
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp 
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

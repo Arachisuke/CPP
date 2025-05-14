@@ -44,19 +44,18 @@ int Bureaucrat::getGrade()
     return this->grade;
 }
 
-void Bureaucrat::incrGrade()
-{
-    this->grade++;
-    if (grade > 150)
+void Bureaucrat::incrGrade(){
+    this->_grade++;
+    if (this->_grade < 1)
         throw Bureaucrat::GradeTooHighException();
- }
+}
 
-void Bureaucrat::decrGrade()
-{
-    this->grade--;
-    if (grade < 1)
+void Bureaucrat::decrGrade(){
+    this->_grade--;
+    if (this->_grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
+
 
 const char * Bureaucrat::GradeTooHighException::what() const throw() // throw cette fonction ne lance aucune exception
 {

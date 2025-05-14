@@ -6,7 +6,7 @@
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:58:17 by macos             #+#    #+#             */
-/*   Updated: 2025/05/13 17:20:12 by macos            ###   ########.fr       */
+/*   Updated: 2025/05/14 17:29:39 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <string>
 #include <exception>
 #include <iomanip>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 
 class AForm;
@@ -27,18 +27,23 @@ class Bureaucrat
 
 	
 		private:
-			std::string const name;
-			int grade;
+			std::string const _name;
+			int _grade;
 	public:
 		Bureaucrat();
 		Bureaucrat(std:: string name, int grade);
 		Bureaucrat( Bureaucrat const & src );
 		~Bureaucrat();
+
+
+		// getter & fonction //
         std:: string getName();
-        int getGrade();
+        int getGrade() const;
 		void incrGrade();
 		void decrGrade();
 		void signForm(AForm &form);
+		void    executeForm(AForm const &form);
+
 		
 		class GradeTooHighException : public std::exception{
             public:
