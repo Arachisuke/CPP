@@ -6,7 +6,7 @@
 /*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 16:55:07 by macos             #+#    #+#             */
-/*   Updated: 2025/05/14 17:33:29 by macos            ###   ########.fr       */
+/*   Updated: 2025/05/26 20:33:27 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,7 @@ int main() {
         std::cout << roboForm << std::endl;
         noobBur.signForm(noobPardonForm);
         std::cout << noobPardonForm << std::endl;
-        // try {
-        //     alice.signForm(roboForm);
-        // } catch (const std::exception &e) {
-        //     std::cerr << "Erreur lors du test Robotomy : " << e.what() << std::endl;
-        // }
+
         std::cout << BOLD << MAGENTA << "===== Test Exécution =====" << RESET << std::endl << std::endl;
         bob.executeForm(shrubForm);
         alice.executeForm(pardonForm);
@@ -84,11 +80,3 @@ int main() {
     
     return 0;
 }
-
-// ya un grade pour executer le format
-// ya un grade pour le signer.
-// signform de bureaucrat utilise le be.signed de form et sil renvoie un throw bureaucrat le catch.
-
-// enfaite besigned c'est pour signer ?
-// et form.signed cest pour signer et affiche si ca signe.
-// besigned lance et signform catch.
