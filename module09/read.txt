@@ -1,0 +1,11 @@
+RPN
+
+
+toujours inferieur a 10.
+
+
+
+// deux pile ?
+// ordre operand et chiffre
+// prendre les deux chiffre et les lui donne.
+// prendre le premier operand de l'autre stack.
