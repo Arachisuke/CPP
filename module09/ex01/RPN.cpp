@@ -65,3 +65,4 @@ int RPN::calculate(const std::string& expression) {
 
     return _stack.top();
 }
+
