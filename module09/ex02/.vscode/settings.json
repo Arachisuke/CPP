@@ -60,6 +60,7 @@
         "algorithm": "cpp",
         "__nullptr": "cpp",
         "chrono": "cpp",
-        "concepts": "cpp"
+        "concepts": "cpp",
+        "unordered_set": "cpp"
     }
 }

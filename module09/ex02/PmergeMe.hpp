@@ -37,6 +37,8 @@ public:
 
     void GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
 
+    int BinarySearch(std::vector<std::pair<int, int> > &myPairs, int start, int end, int target);
+
     void InsertJacob(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
 
     void printSequence(std::vector<int> &vec, std::string expression) const;
@@ -45,7 +47,7 @@ public:
 
     void parseArguments(int argc, char **argv);
 
-
+    void isDoublon();
 
 private:
     std::vector<int> _vector;
@@ -64,3 +66,8 @@ private:
 };
 
 #endif
+
+
+
+
+ // remetre toute les fonctions pas utilise directement par l'utilisateur en private...

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#include <unordered_set>
 
 PmergeMe::PmergeMe() {}
 
@@ -40,6 +41,18 @@ void PmergeMe::parseArguments(int argc, char** argv)
     }
 }
 
+void PmergeMe::isDoublon() 
+{
+        std::unordered_set<int> seen;
+
+    for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); it++)
+    {
+        if (!seen.insert(*it).second)
+            throw std::runtime_error("Error");
+    }
+}
+
+
 void PmergeMe::printSequence(std::vector<int> &vec, std::string expression) const 
  {
     std::cout << expression << std::endl;
@@ -65,7 +78,7 @@ void PmergeMe::printSequence(std::vector<std::pair<int, int> >& myPairs, std::st
     std::cout << expression << std::endl;
 
     for (std::vector<std::pair<int, int> >::const_iterator it = myPairs.begin(); it != myPairs.end(); ++it) {
-        std::cout << BLACK << it->first << " " << it->second << std::endl << RESET;
+        std::cout << BLACK << it->first << " " << std::endl << RESET;
     }
     std::cout << std::endl;
 }
@@ -74,6 +87,7 @@ void PmergeMe::printSequence(std::vector<std::pair<int, int> >& myPairs, std::st
 void PmergeMe::process(int argc, char** argv) 
 { 
     parseArguments(argc, argv);
+    isDoublon();
     std::vector<std::pair<int, int> > myPairs;
     std::vector<int> jacobjacob;
     std::deque<int> MINDEQ;
@@ -82,16 +96,18 @@ void PmergeMe::process(int argc, char** argv)
 
 
     printSequence(_vector, "Before: ");
-    
+
     clock_t startVector = clock();
-    Compairvec(myPairs);
-    SortVector(myPairs, 0, myPairs.size() - 1);
-    printSequence(myPairs, "TESTMICRO1212");
-    GenerateJacobsthal(myPairs, jacobjacob); 
+
+    Compairvec(myPairs); 
+    SortVector(myPairs, 0, myPairs.size() - 1); 
+    SortVector(myPairs, 0, myPairs.size() - 1); 
+    GenerateJacobsthal(myPairs, jacobjacob);
     InsertJacob(myPairs,jacobjacob);
+
     clock_t endVector = clock();
    
-   // printSequence(_vector, "After: ");
+    printSequence(_vector, "After: ");
 
     // printSequence(_deque, "Before: ");
 
@@ -109,7 +125,7 @@ void PmergeMe::process(int argc, char** argv)
     // double dequeTime = static_cast<double>(endDeque - startDeque) / CLOCKS_PER_SEC * 1000000;
 
     std::cout << "Time to process a range of " << _vector.size()
-              << " elements with std::vector : " << vectorTime << " us" << std::endl;
+             << " elements with std::vector : " << vectorTime << " us" << std::endl;
     // std::cout << "Time to process a range of " << _deque.size()
     //           << " elements with std::deque : " << dequeTime << " us" << std::endl;
 }
@@ -220,225 +236,112 @@ void PmergeMe::GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, st
 {
     size_t i;
     size_t j;
+    int tmp;
+    int tmp2;
     
-
-    jacobjacob.push_back(0);
-    jacobjacob.push_back(1);
     jacobjacob.push_back(1);
     jacobjacob.push_back(3);
-    jacobjacob.push_back(2);
-
-    
-    for (size_t i = 5; i <= myPairs.size() -1; i++) 
+    std::vector<int>jacobpure;
+    for (size_t i = 2; i <= myPairs.size() -1; i++) 
     {
 
-        if (jacobjacob[i - 2] + 2 * jacobjacob[i - 4] <= (int)myPairs.size() - 1)
-        {
-            jacobjacob.push_back(jacobjacob[i - 2] + 2 * jacobjacob[i - 4]);
-              //  if (i <= myPairs.size() - 2)  elle sers a r non ? si la ligne d'avant passe moi aussi je passe logique.
-            jacobjacob.push_back(jacobjacob[i - 2] + 2 * jacobjacob[i - 4] - 1);
-            i++;
-        }
+        if (jacobjacob[i - 1] + 2 * jacobjacob[i - 2] <= (int)myPairs.size() - 1)
+           jacobjacob.push_back(jacobjacob[i - 1] + 2 * jacobjacob[i - 2]);
         else
             break;
     }
-
-    i = 0;
-    j = 0;
-    while (i <= myPairs.size() - 1) 
+    i = 1;
+    j = 2;
+    jacobpure = jacobjacob;
+    printSequence(jacobjacob, "JACOB PURE");
+    while(1)
     {
-        while((int)i != jacobjacob[j])
+        if (i < jacobpure.size())
         {
-            if (j == jacobjacob.size() - 1)
-            {
-                jacobjacob.push_back(i);
-                break;
-            }
+            tmp = jacobpure[i - 1]; // = 1
+            tmp2 = jacobpure[i]; // = 3
+        }
+        else
+            break;
+        while(tmp < tmp2 -1)
+        {
+            tmp2--;
+            jacobjacob.insert(jacobjacob.begin() + j, tmp2); 
             j++;
         }
-        j = 0;
+        j++;
         i++;
     }
-    jacobjacob.erase(jacobjacob.begin() , jacobjacob.begin() + 2);     
+    i = myPairs.size() - 1;
+    for (std::vector<int>::iterator it = jacobpure.end() -1; *it < (int)i; i--) // *it = le dernier chiffre 
+       jacobjacob.push_back(i);
+
+    // manque le bout de code que t'as supp avec les indice manquant.
+    printSequence(jacobjacob, "JACOB FINALE");
 }
+
+// while (jacob) pour inserer les min
+// binary(begin, positioninpair -1)
+// insert.
 void PmergeMe::InsertJacob(std::vector<std::pair<int, int> > &myPairs, std::vector<int>& jacobjacob)
 {
-
-   // jacobsthal - 1 (c'est ca le vrai indice ici oublie pas)
-    // find -> chercher le ak et comment le cherche tu peux utilise ta technique de son indice
-   // du coup find en binaire et lowerbound en binaire, par binaire j'entend que tu fais une recherche avec tres peu de range.
-   // le find j'ai bien reflechis, quand c'est un jacobsthal, du coup le chiffre personne ne s'est inserer derriere lui donc il equivaut a son indice+le nombre d'insertion je n'ai meme pas besoin de find je peut direct lowerbound, en ce qui concerne un jacobsthal -1, le probleme c'est que ya eu un jacob apres lui et on ne sait pas si son faible s'est inserer devant lui ce qui changerait son indice ou derriere lui ce qui ne changerait pas son indice. // du coup la relation pourrait etre ... 
-   // pour le jacobsthal -1, on sait que son indice, a soit change de +nbrinsert-1 le -1 correspond au fait que le jacobsthal a pu inserer quelque chose derriere lui du coup ne pas bouger son indice, sois de +nbrinsert
-    // pour le jacobsthal, le chiffre c'est indice = second[jacobsthal -1] + nbrinsert // et le jacobsthal -1 c'est indice = second[jacobsthal -1] + nbrinsert ou indice = second[jacobsthal -1] + nbrinsert-1
-    // car le jacob il est l'indice le plus fort a etre inserer personne ne peut s'inserer derriere lui du coup son indice est clair c indice de base + nbrinsert
-    // jacob-1, c'est qu'il a eu qu'un insert incertain, l'insert est sois plus fort que lui sois moins ce qui fais 2 possibilite nbrinsert ou nbrinsert-1
-    // du coup jacob -> lowerbound direct jusqu'a trouver le bon indice car on peut ne pas le trouve en un lowerbound.
-    // et le jacob -1 je ne sais pas encore comment le trouve. essayons sans comparaison est ce une comparaison de dire est ce que tu est egal a tel chose ?
-    // apres lowerbound c'est fini? oui apres details de si ya 4 chiffre ect les cas speciaux et si tu gere ou non les doublons mais je dirais oui du coup si tu veux faire le test de la lignejuste au dessus.
+    int countInsert;
+    int i;
+    int pos;
+    int last;
+    int forindice = 1; // pour transformer la suite en indice de tableau ->
+    int precision = 1; // precision c'est ak -1 car je sais que ak deja c'est la limite certes mais je suis inferieur a lui donc autant regarder avant.
+    countInsert = 0;
+    i = 0;
 
     std::vector<int>::iterator it = jacobjacob.begin();
 
-    while(it != jacobjacob.end())
+    if (_vector.size() % 2 != 0)
+        last = _vector[_vector.size() -1];
+
+    for (size_t i = 0; i < myPairs.size(); ++i)
     {
-        // find le chiffre MAX correspondant a mon min[it] pour avoir ma range max de lowerbound. ainsi j'ai indicedefort-2 - indicedefort -1. (-1) possible ou pas ? tout depend de comment fonctionne lowerbound mais pour moi oui vu que s'il s'insere juste avant son max tu dis oui bah j'ai pas trouve du coup je tenvoie mon end.
-        std::vector<int>::iterator pos = std::lower_bound(MAX.begin(), MAX.end(), MIN[*it]); // par contre s'il envoie begin, je vais devoir faire une autre comparaison avec lowerbound? comment savoir que begin c'est pas le bon finalement possible que begin sois directement la bonne comparaison.
-        MAX.insert(pos, MIN[*it]);
-        it++;
-    }
-    if (_impair &&  !_vector.empty())
-    {
-            std::vector<int>::iterator pos = std::lower_bound(MAX.begin(), MAX.end(),_vector[_vector.size() - 1]);
-            MAX.insert(pos, _vector[_vector.size() - 1]);
-    }
-    _vector = MAX;
-}
-
-
-void PmergeMe::InsertDeq(std::deque<int>& vec,int start, int end)
-{
-    int key;
-    int j;
-    int tmp;
-    for (int i = start + 1; i <= end; i++)   
-    {
-        key = vec[i]; 
-        j = i - 1; 
-        while (j >= start && key < vec[j]) 
-        {
-            tmp = vec[j];
-            vec[j] = key; 
-            vec[j + 1] = tmp; 
-            j--;
-        }
-    }
-}
-
-void PmergeMe::MergeDeq(std::deque<int>& vec,int start, int mid, int end)
-{
-    std::deque<int> right;
-    std::deque<int> left;
-
-    
-    left.assign(vec.begin() + start, vec.begin() + mid + 1);
-    right.assign(vec.begin() + mid + 1, vec.begin() + end + 1);
-
-    std::deque<int>::const_iterator itright = right.begin();
-    std::deque<int>::const_iterator itleft = left.begin();
-    while (itleft != left.end())
-    {
-        if (itright == right.end()) 
-        {
-            vec[start++] = *itleft ;
-            itleft++;   
-        }
-        else if  (*itleft < *itright)
-        {
-            vec[start++] = *itleft ; 
-           itleft++;
-        }
-        else
-        {
-            vec[start++] = *itright ;
-            itright++;
-        }
-    }
-    while(itright != right.end()) 
-    {
-        vec[start++] = *itright ;
-        itright++;   
-    }
-}
-void PmergeMe::SortDeq(std::deque<int>& vec, int start, int end)
-{
-    int mid = 0;
-    if (start < end)
-    {
-        if (end - start <= 10)
-            InsertDeq(vec, start,end);
-        else 
-        {   
-            mid = start + ((end - start) / 2);
-            SortDeq(vec, start, mid);
-            SortDeq(vec, mid + 1, end);
-            MergeDeq(vec, start, mid, end);
-        }
-    }
-}
-
-void PmergeMe::CompairDeq(std::deque<int>& MIN, std::deque<int>& MAX)
-{
-    
-    int i = 0;
-    size_t j = 1;
-    if (_deque.size() % 2 != 0)
-        _impair = 1;
-    while (j < _deque.size()) 
-    {
-        if (_deque[i] < _deque[j])
-        {
-            MIN.push_back(_deque[i]);
-            MAX.push_back(_deque[j]);
-        }
-        else
-        {
-            MAX.push_back(_deque[i]);
-            MIN.push_back(_deque[j]);
-        }
-        j = j + 2;
-        i = i + 2;
-    }
-}
-
-void PmergeMe::GenerateJacobsthal(std::deque<int>& vec, std::deque<int>& jacobjacob) 
-{
-    size_t i;
-    size_t j;
-    
-
-    jacobjacob.push_back(0);
-    jacobjacob.push_back(1);
-
-    for (size_t i = 2; i < vec.size() -1; i++) 
-    {
-
-        if (jacobjacob[i - 1] + 2 * jacobjacob[i - 2] < (int)vec.size() - 1)
-            jacobjacob.push_back(jacobjacob[i - 1] + 2 * jacobjacob[i - 2]);
-        else
-            break;
-        
-    }
-    jacobjacob.erase(jacobjacob.begin(), jacobjacob.begin() + 2);
-    i = 0;
-    j = 0;
-    while (i <= vec.size() - 1) 
-    {
-        while((int)i != jacobjacob[j])
-        {
-            if (j == jacobjacob.size() - 1)
-            {
-                jacobjacob.push_back(i);
-                break;
-            }
-            j++;
-        }
-        j = 0;
-        i++;
-    }
-}
-void PmergeMe::InsertJacob(std::deque<int>& MAX, std::deque<int>& MIN, std::deque<int>& jacobjacob)
-{
-    std::deque<int>::iterator it = jacobjacob.begin();
+        _vector.push_back(myPairs[i].first);
+    }      
 
     while(it != jacobjacob.end())
     {
-        std::deque<int>::iterator pos = std::lower_bound(MAX.begin(), MAX.end(), MIN[*it]);
-        MAX.insert(pos, MIN[*it]);
+        pos = BinarySearch(myPairs, 0, jacobjacob[i] - forindice + countInsert - precision, myPairs[jacobjacob[i] -1].second);
+        _vector.insert(_vector.begin() + pos,  myPairs[jacobjacob[i] -1].second);
+        countInsert++;
         it++;
     }
-    if (_impair &&  !_deque.empty())
+
+    if (_vector.size() % 2 != 0)
     {
-            std::deque<int>::iterator pos = std::lower_bound(MAX.begin(), MAX.end(),_deque[_deque.size() - 1]);
-            MAX.insert(pos, _deque[_deque.size() - 1]);
+        pos = BinarySearch(myPairs, 0, _vector.size() -1, last);
+        _vector.insert(_vector.begin() + pos,  myPairs[jacobjacob[i] -1].second);
     }
-    _deque = MAX;
+}
+
+// binary search
+// prendre start(begin) end(position + nbrinsert)
+// start - end if target > mid prendre la partie superieur
+// et redecouper ainsi de suite jusqu'a trouve la target
+
+int PmergeMe::BinarySearch(std::vector<std::pair<int, int> > &myPairs, int start, int end, int target) //hendek siya pas le chiffre.
+{
+    int mid;
+    std::cout << "start = " << start << std::endl;
+    std::cout << "end = " << end << std::endl;
+    std::cout << "target = " << target << std::endl;
+    printSequence(myPairs, "OOOOOK");    
+
+    while(end - start != 0) // jai envie de mettre 0 c plus logique
+    {
+        mid = (end - start +1) / 2;
+        if (target > myPairs[mid].first)
+            start = mid +1;
+        if (target < myPairs[mid].first)
+            end = mid - 1;
+    }
+    if (target > myPairs[start].first)
+        start++;
+    std::cout << "start = " << start << std::endl;
+    return start;
 }

@@ -121,3 +121,48 @@
 // tu peux faire un find de jacob pour trouve le ak
 // est ce que dans la recursiv ya pas un meilleur moyen de decouper avec mid. @@@ // jai change en faisant vraiment un tri par pair, sache que le merge merge le odd. 
 // petit erreur de double incrementation du a la copie de lancien code, mais du coup avec pair.
+
+
+
+// change le jacobsthal c'est pas jacob -1 mais bien tout les indice manquant entre deux jacob.
+// teste la correlation jacobsthal + nbrinsert ou nbrinsert -1? demandez a chatgpt.
+// faire les doublons. @@@@
+
+
+//   //  if (i <= myPairs.size() - 2)  elle sers a r non ? si la ligne d'avant passe moi aussi je passe logique.
+
+
+// te manquent de verifie la bonne generation de jacob, + le bout de code que t'as supp. => t'as un overflow . @@@@@@@
+// ensuite faire la formule magique.
+
+
+// formule magique.
+
+
+// jacob pure ou pas finalement 
+// end -> 
+// if jacobpure -> c'est position dans mypair -1 + nbrdinsertion (nombre de fois ou on ete inserer les min)
+// begin ->
+// binary search also known half interval search
+// 
+
+// vraiment ne pas oublie les cas, car on peut te le casse aisement sinon... comme les cas de pushswap...ou autres fait attention...une liste de 0-6, et tester les int max min super long etc...
+
+// le tri du max et le binary search utilise le meme proceder...
+
+
+
+
+
+
+ // jacobsthal - 1 (c'est ca le vrai indice ici oublie pas)
+    // find -> chercher le ak et comment le cherche tu peux utilise ta technique de son indice
+   // du coup find en binaire et lowerbound en binaire, par binaire j'entend que tu fais une recherche avec tres peu de range.
+   // le find j'ai bien reflechis, quand c'est un jacobsthal, du coup le chiffre personne ne s'est inserer derriere lui donc il equivaut a son indice+le nombre d'insertion je n'ai meme pas besoin de find je peut direct lowerbound, en ce qui concerne un jacobsthal -1, le probleme c'est que ya eu un jacob apres lui et on ne sait pas si son faible s'est inserer devant lui ce qui changerait son indice ou derriere lui ce qui ne changerait pas son indice. // du coup la relation pourrait etre ... 
+   // pour le jacobsthal -1, on sait que son indice, a soit change de +nbrinsert-1 le -1 correspond au fait que le jacobsthal a pu inserer quelque chose derriere lui du coup ne pas bouger son indice, sois de +nbrinsert
+    // pour le jacobsthal, le chiffre c'est indice = second[jacobsthal -1] + nbrinsert // et le jacobsthal -1 c'est indice = second[jacobsthal -1] + nbrinsert ou indice = second[jacobsthal -1] + nbrinsert-1
+    // car le jacob il est l'indice le plus fort a etre inserer personne ne peut s'inserer derriere lui du coup son indice est clair c indice de base + nbrinsert
+    // jacob-1, c'est qu'il a eu qu'un insert incertain, l'insert est sois plus fort que lui sois moins ce qui fais 2 possibilite nbrinsert ou nbrinsert-1
+    // du coup jacob -> lowerbound direct jusqu'a trouver le bon indice car on peut ne pas le trouve en un lowerbound.
+    // et le jacob -1 je ne sais pas encore comment le trouve. essayons sans comparaison est ce une comparaison de dire est ce que tu est egal a tel chose ?
+    // apres lowerbound c'est fini? oui apres details de si ya 4 chiffre ect les cas speciaux et si tu gere ou non les doublons mais je dirais oui du coup si tu veux faire le testcke la lignejuste au dessus.
