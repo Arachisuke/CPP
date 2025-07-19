@@ -37,7 +37,7 @@ public:
 
     void GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
 
-    int BinarySearch(std::vector<std::pair<int, int> > &myPairs, int start, int end, int target);
+    int BinarySearch(std::vector<int>& mainChain, int start, int end, int target);
 
     void InsertJacob(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
 

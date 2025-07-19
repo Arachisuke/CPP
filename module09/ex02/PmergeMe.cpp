@@ -97,15 +97,14 @@ void PmergeMe::process(int argc, char** argv)
 
     printSequence(_vector, "Before: ");
 
-    clock_t startVector = clock();
+   clock_t startVector = clock();
 
-    Compairvec(myPairs); 
-    SortVector(myPairs, 0, myPairs.size() - 1); 
+    Compairvec(myPairs);
     SortVector(myPairs, 0, myPairs.size() - 1); 
     GenerateJacobsthal(myPairs, jacobjacob);
     InsertJacob(myPairs,jacobjacob);
 
-    clock_t endVector = clock();
+     clock_t endVector = clock();
    
     printSequence(_vector, "After: ");
 
@@ -253,7 +252,7 @@ void PmergeMe::GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, st
     i = 1;
     j = 2;
     jacobpure = jacobjacob;
-    printSequence(jacobjacob, "JACOB PURE");
+   // printSequence(jacobjacob, "JACOB PURE");
     while(1)
     {
         if (i < jacobpure.size())
@@ -277,7 +276,7 @@ void PmergeMe::GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, st
        jacobjacob.push_back(i);
 
     // manque le bout de code que t'as supp avec les indice manquant.
-    printSequence(jacobjacob, "JACOB FINALE");
+  // printSequence(jacobjacob, "JACOB FINALE");
 }
 
 // while (jacob) pour inserer les min
@@ -286,62 +285,64 @@ void PmergeMe::GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, st
 void PmergeMe::InsertJacob(std::vector<std::pair<int, int> > &myPairs, std::vector<int>& jacobjacob)
 {
     int countInsert;
-    int i;
+    std::vector<int> mainChain;
+    size_t i;
     int pos;
     int last;
     int forindice = 1; // pour transformer la suite en indice de tableau ->
-    int precision = 1; // precision c'est ak -1 car je sais que ak deja c'est la limite certes mais je suis inferieur a lui donc autant regarder avant.
+ //   int precision = 1; // precision c'est ak -1 car je sais que ak deja c'est la limite certes mais je suis inferieur a lui donc autant regarder avant.
     countInsert = 0;
     i = 0;
 
-    std::vector<int>::iterator it = jacobjacob.begin();
 
     if (_vector.size() % 2 != 0)
         last = _vector[_vector.size() -1];
 
     for (size_t i = 0; i < myPairs.size(); ++i)
     {
-        _vector.push_back(myPairs[i].first);
-    }      
-
-    while(it != jacobjacob.end())
+        mainChain.push_back(myPairs[i].first);
+    }
+    mainChain.insert(mainChain.begin(),  myPairs[jacobjacob[i] -1].second); //insert b_0 direct.
+    countInsert++;
+    i++;
+ //   printSequence(mainChain, "MAINCHAIN");
+    while(i < jacobjacob.size())
     {
-        pos = BinarySearch(myPairs, 0, jacobjacob[i] - forindice + countInsert - precision, myPairs[jacobjacob[i] -1].second);
-        _vector.insert(_vector.begin() + pos,  myPairs[jacobjacob[i] -1].second);
+        pos = BinarySearch(mainChain, 0, jacobjacob[i] + countInsert - forindice, myPairs[jacobjacob[i] -1].second);
+        mainChain.insert(mainChain.begin() + pos,  myPairs[jacobjacob[i] -1].second);
         countInsert++;
-        it++;
+        i++;
+  //      printSequence(mainChain, "MAINCHAIN");      
     }
 
+    pos = BinarySearch(mainChain, 0, myPairs.size() + countInsert - forindice, myPairs[myPairs.size() - 1].second);
+    mainChain.insert(mainChain.begin() + pos,  myPairs[myPairs.size() - 1].second);
     if (_vector.size() % 2 != 0)
     {
-        pos = BinarySearch(myPairs, 0, _vector.size() -1, last);
-        _vector.insert(_vector.begin() + pos,  myPairs[jacobjacob[i] -1].second);
+        pos = BinarySearch(mainChain, 0, mainChain.size() -1, last);
+        mainChain.insert(mainChain.begin() + pos,  last);
     }
+    _vector = mainChain;
 }
-
-// binary search
-// prendre start(begin) end(position + nbrinsert)
-// start - end if target > mid prendre la partie superieur
-// et redecouper ainsi de suite jusqu'a trouve la target
-
-int PmergeMe::BinarySearch(std::vector<std::pair<int, int> > &myPairs, int start, int end, int target) //hendek siya pas le chiffre.
+int PmergeMe::BinarySearch(std::vector<int>& mainChain, int start, int end, int target) //hendek siya pas le chiffre.
 {
-    int mid;
-    std::cout << "start = " << start << std::endl;
-    std::cout << "end = " << end << std::endl;
-    std::cout << "target = " << target << std::endl;
-    printSequence(myPairs, "OOOOOK");    
+    int mid = 0;
 
-    while(end - start != 0) // jai envie de mettre 0 c plus logique
+    while(end - start > 1)
     {
-        mid = (end - start +1) / 2;
-        if (target > myPairs[mid].first)
-            start = mid +1;
-        if (target < myPairs[mid].first)
-            end = mid - 1;
+        mid = start + ((end - start) / 2);
+        if (target > mainChain[mid])
+            start = mid +1; 
+        if (target < mainChain[mid])
+            end = mid -1;         
     }
-    if (target > myPairs[start].first)
+    if (target > mainChain[start])
         start++;
-    std::cout << "start = " << start << std::endl;
     return start;
 }
+
+
+
+// 3
+// 1) -> start = 2.  -> mid = 2. target > start = 3. ***
+// 2) -> end = 1  comparaison manuelle target > = start = 2. ou < a mid. start = 0. 

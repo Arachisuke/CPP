@@ -146,10 +146,6 @@
 // binary search also known half interval search
 // 
 
-// vraiment ne pas oublie les cas, car on peut te le casse aisement sinon... comme les cas de pushswap...ou autres fait attention...une liste de 0-6, et tester les int max min super long etc...
-
-// le tri du max et le binary search utilise le meme proceder...
-
 
 
 
@@ -166,3 +162,14 @@
     // du coup jacob -> lowerbound direct jusqu'a trouver le bon indice car on peut ne pas le trouve en un lowerbound.
     // et le jacob -1 je ne sais pas encore comment le trouve. essayons sans comparaison est ce une comparaison de dire est ce que tu est egal a tel chose ?
     // apres lowerbound c'est fini? oui apres details de si ya 4 chiffre ect les cas speciaux et si tu gere ou non les doublons mais je dirais oui du coup si tu veux faire le testcke la lignejuste au dessus.
+
+
+
+// tester le binary si c'est le dernier que je dois inserer par exemple si ya pas d'overflow.
+// vraiment ne pas oublie les cas, car on peut te le casse aisement sinon... comme les cas de pushswap...ou autres fait attention...une liste de 0-6, et tester les int max min super long etc...
+
+// le tri du max et le binary search utilise le meme proceder...
+
+
+
+// binary search, trouve une solution quand ya peu de chiffre, quand on arrive vers 3. prendre une solution hors binary. mettre une fonction dans le binary quand la diff atteint 3. voir plus fais le test petit a petit sur feuille.
