@@ -62,5 +62,6 @@
         "chrono": "cpp",
         "concepts": "cpp",
         "unordered_set": "cpp"
-    }
+    },
+    "makefile.configureOnOpen": false
 }

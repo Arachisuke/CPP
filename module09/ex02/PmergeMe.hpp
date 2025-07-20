@@ -27,42 +27,47 @@ public:
 
     void process(int argc, char** argv);
 
+private:
     void InsertVector(std::vector<std::pair<int, int> > &myPairs, int start, int end);
+    void InsertVector(std::vector<int> &vec, int start, int end);
+    void Insertdeque(std::deque<int> &deq, int start, int end);
+    void Insertdeque(std::deque<std::pair<int, int> > &myPairs, int start, int end);
 
+    void MergeVector(std::vector<int>& vec, int start, int mid, int end);
     void MergeVector(std::vector<std::pair<int, int> > &myPairs, int start, int mid, int end);
+    void Mergedeque(std::deque<std::pair<int, int> > &myPairs, int start, int mid, int end);
+    void Mergedeque(std::deque<int>& deq, int start, int mid, int end);
+
 
     void SortVector(std::vector<std::pair<int, int> > &myPairs, int start, int end);
+    void SortVector(std::vector<int> &vec, int start, int end);
+
 
     void Compairvec(std::vector<std::pair<int, int> > &myPairs);
+    void CompairDeq(std::deque<std::pair<int, int> > &myPairs);
 
     void GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
+    void GenerateJacobsthal(std::deque<std::pair<int, int> > &myPairs, std::deque<int>& jacobjacob);
 
-    int BinarySearch(std::vector<int>& mainChain, int start, int end, int target);
+    void Sortdeque(std::deque<std::pair<int, int> > &myPairs, int start, int end);
+    void Sortdeq(std::deque<int> &deq, int start, int end);
 
     void InsertJacob(std::vector<std::pair<int, int> > &myPairs, std::vector<int> &jacobjacob);
+    void InsertJacob(std::deque<std::pair<int, int> > &myPairs, std::deque<int> &jacobjacob);
 
     void printSequence(std::vector<int> &vec, std::string expression) const;
     void printSequence(std::deque<int> &vec, std::string expression) const;
     void printSequence(std::vector<std::pair<int, int> >& myPairs, std::string expression) const;
 
+    int BinarySearch(std::deque<int> &mainChain, int start, int end, int target);
+    int BinarySearch(std::vector<int>& mainChain, int start, int end, int target);
+
     void parseArguments(int argc, char **argv);
-
     void isDoublon();
-
-private:
+    bool isNumber(const std::string& str) const;
     std::vector<int> _vector;
     std::deque<int> _deque;
 
-
-    
-    void InsertDeq(std::deque<int> &vec, int start, int end);
-    void MergeDeq(std::deque<int> &vec, int start, int mid, int end);
-    void SortDeq(std::deque<int> &vec, int start, int end);
-    void CompairDeq(std::deque<int> &MIN, std::deque<int> &MAX);
-    void GenerateJacobsthal(std::deque<int> &vec, std::deque<int> &jacobjacob);
-    void InsertJacob(std::deque<int> &MAX, std::deque<int> &MIN, std::deque<int> &jacobjacob);
-    int _impair;
-    bool isNumber(const std::string& str) const;
 };
 
 #endif
