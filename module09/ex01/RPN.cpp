@@ -59,7 +59,6 @@ int RPN::calculate(const std::string& expression) {
             throw std::runtime_error("Error: invalid token");
         }
     }
-
     if (_stack.size() != 1)
         throw std::runtime_error("Error: invalid expression");
 

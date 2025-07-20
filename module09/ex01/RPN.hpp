@@ -1,6 +1,7 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
+#include <list>
 #include <stack>
 #include <string>
 
@@ -14,8 +15,7 @@ public:
     int calculate(const std::string& expression);
 
 private:
-    std::stack<int> _stack;
-
+    std::stack<int, std::list<int> > _stack;
     bool isOperator(char c) const;
     int applyOperator(char op, int a, int b) const;
 };
