@@ -21,3 +21,11 @@ private:
 };
 
 #endif
+
+// a efface
+//
+
+// du coup la t'as bien valide relis le reteste le en bal et puis basta c'est valide bro.
+
+
+// a efface
