@@ -18,4 +18,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-// ca gere que les chiffres c normal ?

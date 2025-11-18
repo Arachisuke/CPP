@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
-#include <unordered_set>
+#include <set>
 
 PmergeMe::PmergeMe() {}
 
@@ -44,7 +44,7 @@ void PmergeMe::parseArguments(int argc, char** argv)
 
 void PmergeMe::isDoublon() 
 {
-        std::unordered_set<int> seen;
+        std::set<int> seen;
 
     for (std::vector<int>::iterator it = _vector.begin(); it != _vector.end(); it++)
     {
@@ -376,9 +376,10 @@ void PmergeMe::Compairvec(std::vector<std::pair<int, int> > &myPairs)
     while (j < _vector.size()) 
     {
         if (_vector[i] < _vector[j])
-            myPairs.emplace_back(_vector[j], _vector[i]);
+            myPairs.push_back(std::make_pair(_vector[j], _vector[i]));
         else
-            myPairs.emplace_back(_vector[i], _vector[j]);
+            myPairs.push_back(std::make_pair(_vector[i], _vector[j]));
+
         j = j + 2;
         i = i + 2;
     }
@@ -424,7 +425,7 @@ void PmergeMe::GenerateJacobsthal(std::vector<std::pair<int, int> > &myPairs, st
         j++;
         i++;
     }
-    i = myPairs.size();
+    i = myPairs.size() -1;
     if (myPairs.size() < 3)
         jacobjacob.erase(jacobjacob.begin() + 1);
     std::vector<int>::iterator it2 = jacobjacob.begin();
@@ -653,7 +654,7 @@ void PmergeMe::GenerateJacobsthal(std::deque<std::pair<int, int> > &myPairs, std
         j++;
         i++;
     }
-    i = myPairs.size();
+    i = myPairs.size() -1;
     if (myPairs.size() < 3)
         jacobjacob.erase(jacobjacob.begin() + 1);
     std::deque<int>::iterator it2 = jacobjacob.begin();

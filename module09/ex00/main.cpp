@@ -13,19 +13,16 @@ bool isValidDate(const std::string& date) {
         return false;
     if (date[5] > '1' || (date[5] == '1' && date[6] >= '3'))
         return false;
-    if (date[8] > '3' || (date[8] == '3' && date[9] >= '2')) //  depassement.
+    if (date[8] > '3' || (date[8] == '3' && date[9] >= '2')) 
         return false; 
-    if (date[6] < '8' && date[6] % 2 == '0' && date[8] == '3' && date[9] >= '1') // 30-31
+    if (date[6] < '8' && date[6] % 2 == '0' && date[8] == '3' && date[9] >= '1') 
         return false;
-    if (date[6] >= '8' && date[6] % 2 != '0' && date[8] == '3' && date[9] >= '1') // 30-31
+    if (date[6] >= '8' && date[6] % 2 != '0' && date[8] == '3' && date[9] >= '1') 
         return false;
-    if ((date[5] == '0' && date[6] == '2' && date[3] % 2 != '0' && date[8] > '2') || (date[8] >= '2' && date[9] == '9')) // fev
+    if ((date[5] == '0' && date[6] == '2' && date[3] % 2 != '0' && date[8] > '2') || (date[8] >= '2' && date[9] == '9')) 
         return false;
     return true;
 }
-    // janvier mars avril juillet aout octobre dec 31
-    // fev bisextile.
-
 int main(int argc, char** argv) {
     if (argc != 2) {
         std::cerr << "Error: could not open file." << std::endl;
